@@ -31,10 +31,14 @@ It also provides realtime analytics about the amount of reddit posts matching se
 
 ## Solution Overview
 **Kafka** is a powerful tool for stream processing. It provides a number of benefits that can help you to build reliable and scalable streaming applications. 
-
 **Kafka** can be used to stream real-time data to analytics platforms, such as Hadoop or Spark. This allows to analyze data as it is being generated, which can help us to make better decisions in real time. 
-
 **Kafka** can be used to integrate data from different sources. This allows to build a single view of our data, which can help us to make better decisions.
+
+Currently there is only one data source - reddit. It is possible to add more data sources in the future.
+[Producer](producer.py) for Kafka is written in python. [Consumer](consumer.py) is written in pySpark
+![1 5y2nyltzxzi3n4wo4S5p3g](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/a7ada191-8aaa-4794-82e0-b49f122fac75)
+
+Target table is partitioned by `date` column. And clustered by `subreddit`.
 
 ### Tools
 - Google Cloud Platform (GCP): Cloud-based auto-scaling platform by Google
@@ -43,14 +47,7 @@ It also provides realtime analytics about the amount of reddit posts matching se
 - Terraform: Infrastructure-as-Code (IaC)
 - Confluent Kafka: Streaming System Apache Kafka
 - Apache Spark: Data Processing and Loader
-  
-## Overivew
 
-Currently there is only one data source - reddit. It is possible to add more data sources in the future.
-[Producer](producer.py) for Kafka is written in python. [Consumer](consumer.py) is written in pySpark
-![1 5y2nyltzxzi3n4wo4S5p3g](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/a7ada191-8aaa-4794-82e0-b49f122fac75)
-
-Target table is partitioned by `date` column. And clustered by `subreddit`.
 
 ## Step Guide to Run It
 
@@ -66,8 +63,10 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
   <img alt="BigQuery" src="https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/4392915d-aa7e-46e2-a86b-f55979da1b33" width="500" height="500"/></a>
    - `Cloud API Key` = Confluent Cloud API Key
    - `API Secret` = Confluent Cloud API Secret
-   - `Environment ID` = The ID Environment from Kafka cluster like 'env-'
+   - `Environment ID` = The ID Environment from Kafka cluster like `'env-'`
      
+     ![image](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/8f1f5f89-72d8-4d23-a116-11963706ec28)
+
 - Copy `terraform/variables.tf.example` to `terraform/variables.tf` and replace `<YOUR VALUE HERE>` with your values
 
 - Create infrastructure using terraform
