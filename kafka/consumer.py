@@ -23,7 +23,7 @@ schema = StructType([
     StructField("id", StringType()),
     StructField("subreddit", StringType()),
     StructField("author", StringType()),
-    StructField("subreddit_subscribers", StringType()),
+    StructField("subreddit_subscribers", IntegerType()),
     StructField("selftext", StringType()),
     StructField("title", StringType()),
     StructField("created_utc", TimestampType()),
