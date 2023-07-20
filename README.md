@@ -105,10 +105,10 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
   
 - Start running producer and consumer
   - ```
-    python3 producer.py
+    python kafka/producer.py
     ```
   - ```
-    python3 consumer.py
+    python kafka/consumer.py
     ```
 
 - Create visualization. An example can be seen here. 
