@@ -23,11 +23,7 @@
 
 ## Problem Definition
 
-This tool is for small companies which want to tell people about their product.
-It helps finding posts in reddit which are relevant to the product.
-Then the founder can write some useful comment on the post and tell people about the product.
 
-It also provides realtime analytics about the amount of reddit posts matching search phrase and part of relevant posts.
 
 ## Solution Overview
 **Kafka** is a powerful tool for stream processing. It provides a number of benefits that can help you to build reliable and scalable streaming applications. 
@@ -93,6 +89,20 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
   pip install -r requirements.txt
   ```
 
+- Setup Local Confluent Kafka
+  ```
+  wget https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/latest/confluent_latest_linux_amd64.tar.gz
+  tar xzfv confluent_latest_linux_amd64.tar.gz
+  export PATH="${HOME}/bin:${PATH}"
+  confluent version
+  ```
+  
+- Start Confluent Kafka and Create Topic
+  ```
+  confluent local kafka start
+  confluent local kafka topic create reddit
+  ```
+  
 - Start running producer and consumer
   - ```
     python3 producer.py
@@ -104,4 +114,4 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
 - Create visualization. An example can be seen here. 
   - lookerstudio.google.com does not support git versioning yet. So you need to do it manually.
 
-**Additional**
+## Make Visualization
