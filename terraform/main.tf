@@ -76,7 +76,7 @@ resource "google_bigquery_table" "post_ai" {
 
   clustering = ["reddit"]
 
-  schema = jsoncode([
+  schema = jsonencode([
     {
       "name": "id",
       "type": "STRING",
@@ -94,7 +94,7 @@ resource "google_bigquery_table" "post_ai" {
     },
     {
       "name": "subreddit_subscriber",
-      "type": "INTEGER",
+      "type": "INT64",
       "mode": "NULLABLE"
     },
     {
@@ -126,7 +126,7 @@ provider "confluent" {
   cloud_api_secret = var.cloud_api_secret
 }
 
-resource "CLUSTER_REDDIT" "main" {
+resource "confluent_kafka_cluster" "main" {
   display_name = "cluster_reddit"
   availability = "SINGLE_ZONE"
   cloud        = "GCP"
@@ -143,8 +143,8 @@ resource "CLUSTER_REDDIT" "main" {
   }
 }
 
-data "cluster_reddit" "main" {
-  id = cluster_reddit.main.id
+data "confluent_kafka_cluster" "main" {
+  id = confluent_kafka_cluster.main.id
 
   environment {
     id = var.environment_id
@@ -153,7 +153,7 @@ data "cluster_reddit" "main" {
 
 resource "confluent_service_account" "app-manager" {
   display_name = "app-${var.topic_name}-manager"
-  description  = "Service account to manage ${cluster_reddit.main.id} Kafka cluster"
+  description  = "Service account to manage ${confluent_kafka_cluster.main.id} Kafka cluster"
 
   lifecycle {
     prevent_destroy = false
@@ -163,7 +163,7 @@ resource "confluent_service_account" "app-manager" {
 resource "confluent_role_binding" "app-manager-kafka-cluster-admin" {
   principal   = "User:${confluent_service_account.app-manager.id}"
   role_name   = "CloudClusterAdmin"
-  crn_pattern = data.cluster_reddit.main.rbac_crn
+  crn_pattern = data.confluent_kafka_cluster.main.rbac_crn
 }
 
 resource "confluent_api_key" "app-manager-kafka-api-key" {
@@ -176,9 +176,9 @@ resource "confluent_api_key" "app-manager-kafka-api-key" {
   }
 
   managed_resource {
-    id          = data.cluster_reddit.main.id
-    api_version = data.cluster_reddit.main.api_version
-    kind        = data.cluster_reddit.main.kind
+    id          = data.confluent_kafka_cluster.main.id
+    api_version = data.confluent_kafka_cluster.main.api_version
+    kind        = data.confluent_kafka_cluster.main.kind
 
     environment {
       id = var.environment_id
@@ -194,11 +194,11 @@ resource "confluent_api_key" "app-manager-kafka-api-key" {
 
 resource "confluent_kafka_topic" "main" {
   kafka_cluster {
-    id = cluster_reddit.main.id
+    id = confluent_kafka_cluster.main.id
   }
 
   topic_name    = var.topic_name
-  rest_endpoint = data.cluster_reddit.main.rest_endpoint
+  rest_endpoint = data.confluent_kafka_cluster.main.rest_endpoint
   credentials {
     key    = confluent_api_key.app-manager-kafka-api-key.id
     secret = confluent_api_key.app-manager-kafka-api-key.secret
