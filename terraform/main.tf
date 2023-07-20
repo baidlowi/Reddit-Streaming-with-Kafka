@@ -77,11 +77,6 @@ resource "google_bigquery_table" "post_ai" {
   clustering = ["reddit"]
 
   schema = jsoncode([
-	{
-      "name": "created_utc",
-      "type": "TIMESTAMP",
-      "mode": "NULLABLE"
-    },
     {
       "name": "id",
       "type": "STRING",
@@ -92,9 +87,14 @@ resource "google_bigquery_table" "post_ai" {
       "type": "STRING",
       "mode": "NULLABLE"
     },
-	{
+    {
       "name": "author",
       "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "subreddit_subscriber",
+      "type": "INTEGER",
       "mode": "NULLABLE"
     },
     {
@@ -105,6 +105,11 @@ resource "google_bigquery_table" "post_ai" {
     {
       "name": "title",
       "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "created_utc",
+      "type": "TIMESTAMP",
       "mode": "NULLABLE"
     },
     {
