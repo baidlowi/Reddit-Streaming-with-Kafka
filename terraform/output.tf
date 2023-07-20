@@ -11,7 +11,7 @@ output "kafka_api_key_secret" {
 
 output "kafka_endpoint" {
   description = "Kafka Endpoint"
-  value       = data.reddit_cluster.main.bootstrap_endpoint
+  value       = data.confluent_kafka_cluster.bootstrap_endpoint
   sensitive   = true
 }
 
