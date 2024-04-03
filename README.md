@@ -1,4 +1,4 @@
-# <p align="center"><strong> Reddit Streaming with Kafka </strong><p>
+# <p align="center"><strong> Technology News Discussion Reddit Streaming with Kafka </strong><p>
 <div align="center">
   <a href="https://www.terraform.io/" target="_blank" >
   <img alt="Terraform" src="https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/6468cc31-a08c-48a3-ad75-55df01fbfe98" width="90" height="40"/>
