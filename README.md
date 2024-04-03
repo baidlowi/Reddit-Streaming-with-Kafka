@@ -31,8 +31,11 @@
 **Kafka** can be used to integrate data from different sources. This allows to build a single view of our data, which can help us to make better decisions.
 
 Currently there is only one data source - reddit. It is possible to add more data sources in the future.
-[Producer](producer.py) for Kafka is written in python. [Consumer](consumer.py) is written in pySpark
-![1 5y2nyltzxzi3n4wo4S5p3g](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/a7ada191-8aaa-4794-82e0-b49f122fac75)
+- [Producer](producer.py) for Kafka is written in python.
+- [Consumer](consumer.py) is written in pySpark
+
+![image](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/5e301737-ba0c-4d85-9cbf-202c85ce1802)
+
 
 Target table is partitioned by `date` column. And clustered by `subreddit`.
 
@@ -56,7 +59,7 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
 - Create [google project](https://console.cloud.google.com) and store credentials in `google-services.json` file
 - Sign-up https://confluent.cloud, create new key and enviroment to get variables
   <a href="https://confluent.cloud/settings/api-keys/create" target="_blank" >
-  <img alt="BigQuery" src="https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/4392915d-aa7e-46e2-a86b-f55979da1b33" width="500" height="500"/></a>
+  <img alt="api-key" src="https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/9db18b65-ba5d-4715-8b6f-6f5deb429c6b"/></a>
    - `Cloud API Key` = Confluent Cloud API Key
    - `API Secret` = Confluent Cloud API Secret
    - `Environment ID` = The ID Environment from Kafka cluster like `'env-'`
