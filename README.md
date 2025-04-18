@@ -22,8 +22,7 @@
 </div><br>
 
 ## Problem Definition
-
-
+Reddit is a significant real-time news platform with high data volume and velocity. The sheer volume and velocity of posts, comments, and upvotes on these subreddits can provide valuable insights into emerging news events, public sentiment, and the initial reactions to unfolding stories. However, its unstructured and dynamic nature makes effectively monitoring and extracting meaningful real-time news information challenging. There is a need for a system that can effectively monitor Reddit in real-time to identify, track, and analyze emerging news events and related discussions as they unfold. This limitation hinders the ability of individuals, news organizations, researchers, and other stakeholders to gain timely insights and react quickly to significant events. 
 
 ## Solution Overview
 **Kafka** is a powerful tool for stream processing. It provides a number of benefits that can help you to build reliable and scalable streaming applications. 
@@ -31,8 +30,8 @@
 **Kafka** can be used to integrate data from different sources. This allows to build a single view of our data, which can help us to make better decisions.
 
 Currently there is only one data source - reddit. It is possible to add more data sources in the future.
-- [Producer](producer.py) for Kafka is written in python.
-- [Consumer](consumer.py) is written in pySpark
+- [Producer](kafka/producer.py) for Kafka is written in python.
+- [Consumer](kafka/consumer.py) is written in pySpark
 
 ![image](https://github.com/baidlowi/Reddit-Streaming-with-Kafka/assets/79616397/5e301737-ba0c-4d85-9cbf-202c85ce1802)
 
@@ -114,7 +113,10 @@ Target table is partitioned by `date` column. And clustered by `subreddit`.
     python kafka/consumer.py
     ```
 
-- Create visualization. An example can be seen here. 
-  - lookerstudio.google.com does not support git versioning yet. So you need to do it manually.
+## Preview Data on BigQuery
+![image](https://github.com/user-attachments/assets/37309d25-b7d1-4a8f-83e4-5efaeea46ce1)
 
 ## Make Visualization
+<a href="https://lookerstudio.google.com/reporting/a05c3672-9541-473c-8a42-9b722f5bf690" >
+ <img alt="BigQuery" src="https://github.com/user-attachments/assets/1a5c4619-5bf9-4f78-b75e-ab749a23ba05"/>
+</a>
