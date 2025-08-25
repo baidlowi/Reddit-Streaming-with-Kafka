@@ -1,5 +1,3 @@
-// SAMPLE JSON FILE FOR GOOGLE SERVICE ACCOUNT CREDENTIALS
-// Replace the placeholder values with your actual service account details.
 {
   "type": "service_account",
   "project_id": "your-project-id",
