@@ -1,20 +1,20 @@
 variable "cloud_api_key" {
   description = "Confluent Cloud API Key"
   type        = string
-  default     = "<ADD VALUE>"
+  default     = "testu"
 }
 
 variable "cloud_api_secret" {
   description = "Confluent Cloud API Secret"
   type        = string
   sensitive   = true
-  default     = "<ADD HERE>"
+  default     = "testu"
 }
 
 variable "environment_id" {
   description = "The ID Environment that the Kafka cluster belongs to of the form 'env-'"
   type        = string
-  default     = "<ADD HERE>"
+  default     = "testu"
 }
 
 variable "topic_name" {
@@ -23,12 +23,12 @@ variable "topic_name" {
 }
 
 locals {
-  data_lake_bucket = "<ADD HERE>"
+  data_lake_bucket = "testu"
 }
 
 variable "project" {
   description = "Project ID"
-  default = "<ADD HERE>"
+  default = "testu"
 }
 
 variable "credentials" {
